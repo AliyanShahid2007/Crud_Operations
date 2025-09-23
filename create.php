@@ -175,7 +175,11 @@
 <div class="add-card mt-5">
     <h3 class="text-center mb-4">Register</h3>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">Profile Picture</label>
+            <input type="file" class="form-control" name="profile_pic" required>
+        </div>
         <div class="mb-3">
             <label class="form-label">Name:</label>
             <input type="text" class="form-control" name="name" required>
@@ -209,7 +213,17 @@
         $email = $conn->real_escape_string($_POST['email']);
         $password = $conn->real_escape_string($_POST['password']);
 
-        $sql = "INSERT INTO users(name,email,pass) VALUES('$name','$email','$password')";
+           $target_dir = "uploads/";
+        if(!is_dir($target_dir)){
+            mkdir($target_dir,0777,true);
+        }
+
+        $target_file = $target_dir . time() . "-" . basename($_FILES["profile_pic"]["name"]);
+        move_uploaded_file($_FILES["profile_pic"]["tmp_name"],$target_file);
+
+
+
+        $sql = "INSERT INTO users(name, email, pass, profile_pic) VALUES('$name','$email','$password','$target_file')";
 
         if($conn->query($sql)){
             echo "<script>alert('User Added'); window.location='index.php';</script>";

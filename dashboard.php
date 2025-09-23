@@ -2,9 +2,22 @@
 session_start();
 if(!isset($_SESSION['user_id'])){
     header("Location:login.php");
+    exit();
 }
-?>
 
+include "db.php"; // database connection
+
+$user_id = $_SESSION['user_id'];
+$stmt = $conn->prepare("SELECT profile_pic, name FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+// Profile picture exactly jaisa database me hai, waise hi use karo
+$profile_pic = !empty($user['profile_pic']) ? $user['profile_pic'] : "";
+$user_name   = !empty($user['name']) ? $user['name'] : "Guest";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,126 +35,36 @@ if(!isset($_SESSION['user_id'])){
       font-family: Arial, sans-serif;
     }
 
-    /* Custom navbar styles */
-    .dash-nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: linear-gradient(135deg, #6a1b9a, #9c27b0);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      z-index: 1030;
-      padding: 0.5rem 1rem;
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #6a1b9a;
+      margin-bottom: 1rem;
     }
 
-    .dash-nav-inner {
-      max-width: 1140px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-
-    .dash-nav-brand {
-      color: white;
-      font-weight: 700;
-      font-size: 1.5rem;
-      text-decoration: none;
-    }
-
-    .dash-nav-toggle {
-      display: none;
-      font-size: 1.5rem;
-      background: transparent;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    .dash-nav-menu {
-      display: flex;
-      gap: 1.25rem;
-      align-items: center;
-    }
-
-    .dash-nav-menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-
-    .dash-nav-menu a:hover,
-    .dash-nav-menu a.active {
-      color: #f3e5f5;
-    }
-
-    .dash-nav-menu .btn-exit {
-      background: white;
-      color: #6a1b9a;
-      padding: 0.3rem 0.8rem;
-      border-radius: 5px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .dash-nav-menu .btn-exit:hover {
-      background: #4a148c;
-      color: white;
-    }
-
-    /* Responsive nav */
+    /* Existing navbar styling */
+    .dash-nav { position: fixed; top: 0; width: 100%; background: linear-gradient(135deg, #6a1b9a, #9c27b0); box-shadow: 0 2px 10px rgba(0,0,0,0.3); z-index: 1030; padding: 0.5rem 1rem; }
+    .dash-nav-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .dash-nav-brand { color: white; font-weight: 700; font-size: 1.5rem; text-decoration: none; }
+    .dash-nav-toggle { display: none; font-size: 1.5rem; background: transparent; border: none; color: white; cursor: pointer; }
+    .dash-nav-menu { display: flex; gap: 1.25rem; align-items: center; }
+    .dash-nav-menu a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .dash-nav-menu a:hover, .dash-nav-menu a.active { color: #f3e5f5; }
+    .dash-nav-menu .btn-exit { background: white; color: #6a1b9a; padding: 0.3rem 0.8rem; border-radius: 5px; font-weight: 600; text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; }
+    .dash-nav-menu .btn-exit:hover { background: #4a148c; color: white; }
     @media (max-width: 768px) {
-      .dash-nav-toggle {
-        display: block;
-      }
-
-      .dash-nav-menu {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        margin-top: 0.5rem;
-        background: linear-gradient(135deg, #6a1b9a, #9c27b0);
-        border-radius: 0 0 8px 8px;
-        padding: 0.5rem 0;
-      }
-
-      .dash-nav-menu.active {
-        display: flex;
-      }
-
-      .dash-nav-menu a {
-        padding: 0.5rem 1rem;
-        width: 100%;
-      }
+      .dash-nav-toggle { display: block; }
+      .dash-nav-menu { flex-direction: column; width: 100%; display: none; margin-top: 0.5rem; background: linear-gradient(135deg, #6a1b9a, #9c27b0); border-radius: 0 0 8px 8px; padding: 0.5rem 0; }
+      .dash-nav-menu.active { display: flex; }
+      .dash-nav-menu a { padding: 0.5rem 1rem; width: 100%; }
     }
 
-    /* Main content card */
-    .dash-content {
-      max-width: 700px;
-      margin: 2rem auto;
-    }
-
-    .dash-card {
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      border: none;
-      padding: 3rem;
-      border-radius: 15px;
-      background: white;
-      text-align: center;
-    }
-
-    .dash-card h1 {
-      color: #6a1b9a;
-      font-weight: 700;
-    }
-
-    .dash-card p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #555;
-    }
+    .dash-content { max-width: 700px; margin: 2rem auto; }
+    .dash-card { box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: none; padding: 3rem; border-radius: 15px; background: white; text-align: center; }
+    .dash-card h1 { color: #6a1b9a; font-weight: 700; }
+    .dash-card p { margin-top: 1rem; font-size: 1.1rem; color: #555; }
   </style>
 </head>
 <body>
@@ -165,18 +88,22 @@ if(!isset($_SESSION['user_id'])){
 
 <div class="dash-content">
   <div class="dash-card">
-    <h1>Hey! <?= isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Guest' ?>, You're Logged In 🎉</h1>
+    <!-- Profile Picture (agar database me hai to show kare) -->
+    <?php if(!empty($profile_pic)): ?>
+      <img src="<?= htmlspecialchars($profile_pic) ?>" alt="Profile Picture" class="profile-pic">
+    <?php endif; ?>
+
+    <!-- Username -->
+    <h1>Hey! <?= htmlspecialchars($user_name) ?>, You're Logged In 🎉</h1>
     <p>Welcome to your dashboard. Enjoy your session!</p>
   </div>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
   const toggleBtn = document.querySelector('.dash-nav-toggle');
   const navMenu = document.querySelector('.dash-nav-menu');
-
   toggleBtn.addEventListener('click', () => {
     const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', !expanded);

@@ -187,7 +187,7 @@
 <!-- End Customized Navbar -->
 
 <div class="container table-wrapper mt-5">
-    <h2>WELCOME TO MY WEBSITE</h2>
+    <h2>User Management Panel</h2>
 
     <div class="mb-3 text-end">
         <a href="create.php" class="btn btn-purple">Add New User</a>
@@ -201,6 +201,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Profile Img</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -214,6 +215,7 @@
                                 <td><?= htmlspecialchars($row['name']) ?></td>
                                 <td><?= htmlspecialchars($row['email']) ?></td>
                                 <td><?= htmlspecialchars($row['pass']) ?></td>
+                                <td><img src="<?= htmlspecialchars($row['profile_pic']) ?>" alt="Profile" width="50" height="50"></td>
                                 <td class="action-links">
                                     <a class="edit" href="update.php?id=<?= $row['id'] ?>">Edit</a>
                                     <a class="delete" href="delete.php?id=<?= $row['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>

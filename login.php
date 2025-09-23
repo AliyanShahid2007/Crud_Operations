@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: white;
         }
 
-        /* Navbar styles with unique classes */
+        /* Navbar styles */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #f3e5f5;
         }
 
+        /* Fixed logout/login button style */
         .nav-links .btn-logout {
             background: white;
             color: #6a1b9a;
@@ -180,13 +181,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Navbar -->
 <nav class="nav-bar" role="navigation" aria-label="Primary Navigation">
     <div class="nav-inner">
-        <a href="index.php" class="nav-brand">AS-Ltd</a>
+        <a href="login.php" class="nav-brand">AS-Ltd</a>
         <button class="nav-toggle-btn" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
             &#9776;
         </button>
         <div class="nav-links" id="navLinks">
-        <a href="login.php">Home</a>
-        <a href="login.php" class="btn-exit">Login</a>
+            <a href="login.php">Home</a>
+            <a href="login.php" class="btn-logout">Login</a>
         </div>
     </div>
 </nav>
