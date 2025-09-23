@@ -12,5 +12,6 @@ create table users(
   name varchar(255) not null,
   email varchar(255) not null,
   pass varchar(255) not null,
+ Profile_pic varchar(255) 
 
 );
