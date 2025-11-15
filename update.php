@@ -120,9 +120,11 @@ button:hover { background-color: #4a148c; }
         <a href="#" class="custom-navbar-brand">AS-Ltd</a>
         <button class="custom-navbar-toggler" aria-expanded="false" aria-controls="customNavbarMenu" aria-label="Toggle navigation">&#9776;</button>
         <div class="custom-navbar-menu" id="customNavbarMenu">
-            <a href="dashboard.php">Home</a>
-            <a href="index.php">Users</a>
-            <a href="create.php">Add User</a>
+        <a href="dashboard.php">Home</a>
+      <a href="index.php">Users</a>
+      <a href="create.php">Add User</a>
+      <a href="product.php">Add Product</a>
+      <a href="showproduct.php">ShowProduct</a>
             <a href="logout.php" class="custom-btn-logout">Logout</a>
         </div>
     </div>

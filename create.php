@@ -163,9 +163,11 @@
             &#9776;
         </button>
         <div class="nav-links" id="mainNav">
-            <a href="dashboard.php">Home</a>
-            <a href="index.php">Users</a>
-            <a href="create.php">Add User</a>
+        <a href="dashboard.php">Home</a>
+      <a href="index.php">Users</a>
+      <a href="create.php">Add User</a>
+      <a href="product.php">Add Product</a>
+      <a href="showproduct.php">ShowProduct</a>
             <a href="login.php" class="btn-exit">Logout</a>
         </div>
     </div>

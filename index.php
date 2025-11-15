@@ -177,8 +177,10 @@
         </button>
         <div class="nav-menu-list" id="navMenuList">
         <a href="dashboard.php">Home</a>
-        <a href="index.php">Users</a>
-        <a href="create.php">Add User</a>
+      <a href="index.php">Users</a>
+      <a href="create.php">Add User</a>
+      <a href="product.php">Add Product</a>
+      <a href="showproduct.php">Product</a>
         <a href="logout.php" class="btn-logout-custom">Logout</a>
        
         </div>

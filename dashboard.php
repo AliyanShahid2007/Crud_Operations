@@ -80,6 +80,8 @@ $user_name   = !empty($user['name']) ? $user['name'] : "Guest";
       <a href="dashboard.php">Home</a>
       <a href="index.php">Users</a>
       <a href="create.php">Add User</a>
+      <a href="product.php">Add Product</a>
+      <a href="showproduct.php">Products</a>
       <a href="login.php" class="btn-exit">Logout</a>
     </div>
   </div>
