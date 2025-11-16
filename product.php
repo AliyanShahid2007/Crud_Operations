@@ -163,7 +163,7 @@
             &#9776;
         </button>
         <div class="nav-links" id="mainNav">
-        <a href="dashboard.php">Home</a>
+       <a href="dashboard.php">Home</a>
       <a href="index.php">Users</a>
       <a href="create.php">Add User</a>
       <a href="product.php">Add Product</a>

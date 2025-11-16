@@ -78,6 +78,19 @@
         .btn-purple:hover {
             background-color: #4a148c;
         }
+           .btn-exit { 
+            background: white !important;  
+            color: #6a1b9a !important; 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            text-decoration: none; 
+            transition: background-color 0.3s ease, color 0.3s ease; }
+
+        .btn-exit:hover { 
+            background: #4a148c !important; 
+            color: white !important; 
+        }
     </style>
 </head>
 <body>
@@ -88,7 +101,8 @@
         <a href="#" class="nav-branding">AS-Ltd</a>
         <div class="nav-menu-list">
             <a href="landing.php">Home</a>
-            <a href="login.php">Admin Login</a>
+            <a href="login.php" class="btn-exit">Admin Login</a>
+            
         </div>
     </div>
 </nav>

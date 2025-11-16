@@ -164,6 +164,35 @@
                 padding: 8px 12px;
             }
         }
+         .btn-purple {
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            border: none;
+            color: #fff !important;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #4a148c, #6a1b9a);
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .btn-exit { 
+            background: white !important;  
+            color: #6a1b9a !important; 
+            padding: 0.3rem 0.8rem; 
+            border-radius: 5px; 
+            font-weight: 600; 
+            text-decoration: none; 
+            transition: background-color 0.3s ease, color 0.3s ease; }
+
+        .btn-exit:hover { 
+            background: #4a148c !important; 
+            color: white !important; 
+        }
+    
     </style>
 </head>
 <body>
@@ -180,8 +209,8 @@
       <a href="index.php">Users</a>
       <a href="create.php">Add User</a>
       <a href="product.php">Add Product</a>
-      <a href="showproduct.php">Product</a>
-        <a href="logout.php" class="btn-logout-custom">Logout</a>
+      <a href="showproduct.php">Products</a>
+     <a href="login.php" class="btn-exit">Logout</a>
        
         </div>
     </div>

@@ -170,6 +170,21 @@
                 padding: 8px 12px;
             }
         }
+         .btn-purple {
+            background: linear-gradient(135deg, #6a1b9a, #9c27b0);
+            border: none;
+            color: #fff !important;
+            font-weight: 600;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #4a148c, #6a1b9a);
+            color: #fff !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
     </style>
 </head>
 <body>
