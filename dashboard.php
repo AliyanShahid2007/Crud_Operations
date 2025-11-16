@@ -96,8 +96,8 @@ $user_name   = !empty($user['name']) ? $user['name'] : "Guest";
     <?php endif; ?>
 
     <!-- Username -->
-    <h1>Hey! <?= htmlspecialchars($user_name) ?>, You're Logged In 🎉</h1>
-    <p>Welcome to your dashboard. Enjoy your session!</p>
+    <h1>Welcome! <?= htmlspecialchars($user_name) ?>, You're Logged In 🎉</h1>
+    <p>Welcome to your Admin Panel. Enjoy your session!</p>
   </div>
 </div>
 
